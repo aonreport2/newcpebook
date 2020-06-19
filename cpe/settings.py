@@ -26,7 +26,7 @@ SECRET_KEY = '73*ls_+(ytrsd3!gpcwxn&%7235g)jh^f^7fzk!z&2mqze7v=m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://thawing-falls-93784.herokuapp.com/ ']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
