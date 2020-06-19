@@ -1,0 +1,22 @@
+{% extends 'layout2.html'%}
+{% block content %}
+
+    <h2>ส่งคำขอลายเซ็นต์</h2>
+    <h3>หนูคือ {{ user.userprofile.nickname }} ต้องการ ลายเซ็นต์ของ</h3>
+    <p>              <div class="alert alert-primary" role="alert">
+                 ID ของคุณคือ  {{ request.user.id }} <a href="#" class="alert-link"></a>.
+              </div>
+
+
+
+    <form action="final" method="post">
+        {% csrf_token %}
+    <div class="form-group">
+   <label for ="" > กรอก ID จ้า </label>
+   <input type="text" class="form-control" name="iduser">
+    <input type="submit" value="ส่งเลย" class="btn btn-primary">
+    </div>
+    </form>
+
+
+{% endblock %}

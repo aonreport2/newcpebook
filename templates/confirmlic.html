@@ -1,0 +1,59 @@
+    {% extends 'layout2.html'   %}
+{% block content %}
+        <div class="container">
+          {% if user.is_authenticated %}
+              <p>
+              <div class="alert alert-primary" role="alert">
+                 สวัสดีจ้า {{ user.userprofile.nickname }} นี้คือคำขอลายเซ็นต์นะ <a href="#" class="alert-link"></a>.
+              </div>
+              <div class="alert alert-primary" role="alert">
+                 ID ของคุณคือ  {{ request.user.id }} <a href="#" class="alert-link"></a>.
+              </div>
+              </p>
+                <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col"align="center">คำสั่งที่</th>
+              <th scope="col"align="center">คำขอลายเซ็นต์จากID</th>
+                 <th scope="col"align="center">ชื่อ</th>
+              <th scope="col"align="center">สถานะ</th>
+                <th scope="col"align="center">ให้/ไม่ให้</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for item in oders %}
+            <tr>
+              <th scope="row">{{ item.id }}</th>
+              <td><p>{{ item.idcpesend }}</p></td>
+                <td>{% for tests in test %}
+                              {% if tests.user_id == item.idcpesend %}
+                                 <p> {{ tests.nickname }} </p>
+                                 {% endif %}
+                             {% endfor %}
+                    </td>
+              <td>{% if item.status == True %}
+                  <p align="center" ><span class="badge badge-pill badge-success">ได้ลายเซ็นต์แล้ว</span></p>
+                  {% else %}
+
+                  <p align="center"><span class="badge badge-pill badge-danger">ยังไม่ได้ลายเซ็นต์</span></p>
+              {% endif %}
+              </td>
+
+            <td>
+                {% if item.status == False %}
+                    <a href = "{% url 'confirmsend' item.id %}"button type="button" class="btn btn-primary">เซ็นต์ให้</abutton></a>
+                    {%endif %}
+            </td>
+
+            </tr>
+        {% endfor %}
+          </tbody>
+        </table>
+
+            {% else %}
+        <h2>กรุณา login ก่อนครับ </h2>
+
+        {% endif %}
+
+    </div>
+{% endblock %}
