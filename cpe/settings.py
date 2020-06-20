@@ -26,7 +26,7 @@ SECRET_KEY = '73*ls_+(ytrsd3!gpcwxn&%7235g)jh^f^7fzk!z&2mqze7v=m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['128.199.112.137']
 
 
 # Application definition
@@ -81,15 +81,15 @@ WSGI_APPLICATION = 'cpe.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': "cpe",
-        'USER':'root',
-        'PASSWORD':'',
+        'USER':'aon132543',
+        'PASSWORD':'06543218',
         'HOST':'localhost',
-        'PORT':'3306'
+        'PORT':''
     }
 }
-DATABASES['default'] = dj_database_url.config(default='postgres://zqequqmmdowddw:80d398c6d6860813af270a13e6f58eaa1af02c94413d2b672592d172a7276197@ec2-34-230-231-71.compute-1.amazonaws.com:5432/d95o3fq1sevi7q')
+
 
 
 # Password validation
@@ -129,4 +129,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
