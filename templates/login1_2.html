@@ -19,9 +19,9 @@
 <form action="setpassword" method="post">
         {% csrf_token %}
     <div class="form-group">
-        <h2><label for ="" > ตั้งรหัสผ่านจ้า กรอกตรงนี้นะ  </label></h2>
+        <h2><label for ="" > ตั้งรหัสผ่าน กรอกตรงนี้นะ  </label></h2>
     <label for="">ID:</label>
-  <input type="text" class="form-control"  name="userid" value= {{ userid }} ><br><br>
+  <input type="text" class="form-control"  name="userid" value= {{ userid }} disabled ><br><br>
         <label for="">PASSWORD:</label>
    <input type="password" class="form-control" name="password">
     <input type="submit" value="ส่งเลย" class="btn btn-primary">
