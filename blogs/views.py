@@ -20,6 +20,7 @@ def hello (request):
                 )
 
 def page1(request):
+
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -72,11 +73,6 @@ def adduser_admin(request):
             user_group.user_set.add(signUpUser)
 
             #--------
-
-
-
-
-
 
     else:
         form = signUpForm()
