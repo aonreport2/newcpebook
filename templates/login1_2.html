@@ -10,22 +10,23 @@
 </div>
 
 <div class="alert alert-primary" role="alert">
-      <h3 align="center">  IDของคุณคือ ID :{{ userid }}  เอาไว้บอกเพื่อน หรือ เวลาเพื่อนขอ ID เอาไว้ ให้ลายเซ็นต์</h3>
+      <h3 align="center">  IDของคุณคือ ID :{{ userid }}  เอาไว้บอกเพื่อน หรือ เวลาเพื่อนขอ ID เอาไว้ ให้ลายเซ็น</h3>
 </div>
           <div class="alert alert-dark" role="alert">
-        <h3 align="center"> Username : {{ username }} *** เอาไว้ Login </h3>
+        <h3 align="center"> Username : {{ username }} *** เอาไว้ เข้าสู่ระบบ </h3>
         </div>
 
 <form action="setpassword" method="post">
         {% csrf_token %}
     <div class="form-group">
-        <h2><label for ="" > ตั้งรหัสผ่าน กรอกตรงนี้นะ  </label></h2>
+        <h2><label for ="" > กรุณาตั้งรหัสผ่าน   </label></h2>
     <label for="">ID:</label>
   <input type="text" class="form-control"  name="userid" value= {{ userid }} disabled ><br><br>
         <label for="">PASSWORD:</label>
    <input type="password" class="form-control" name="password">
-    <input type="submit" value="ส่งเลย" class="btn btn-primary">
+    <input type="submit" value="ยืนยัน" class="btn btn-primary">
     </div>
     </form>
+      <p>หมายเหตุ เข้าสู่ระบบครั้งแรก สามารถใช้งานได้เพียงครั้งเดียวเท่านั้น หากลืมรหัสผ่าน ติดต่อ พี่เก๊า พี่อั๋น พี่จิ พี่ด้า</p>
            </div>
 {% endblock %}

@@ -4,7 +4,7 @@
           {% if user.is_authenticated %}
               <p>
               <div class="alert alert-primary" role="alert">
-                 สวัสดีจ้า {{ user.userprofile.nickname }} นี้คือคำขอลายเซ็นต์นะ <a href="#" class="alert-link"></a>.
+                 สวัสดีจ้า {{ user.userprofile.nickname }} นี้คือคำขอลายเซ็นนะ <a href="#" class="alert-link"></a>.
               </div>
               <div class="alert alert-primary" role="alert">
                  ID ของคุณคือ  {{ request.user.id }} <a href="#" class="alert-link"></a>.
@@ -32,16 +32,16 @@
                              {% endfor %}
                     </td>
               <td>{% if item.status == True %}
-                  <p align="center" ><span class="badge badge-pill badge-success">ได้ลายเซ็นต์แล้ว</span></p>
+                  <p align="center" ><span class="badge badge-pill badge-success">ได้ลายเซ็นแล้ว</span></p>
                   {% else %}
 
-                  <p align="center"><span class="badge badge-pill badge-danger">ยังไม่ได้ลายเซ็นต์</span></p>
+                  <p align="center"><span class="badge badge-pill badge-danger">ยังไม่ได้ลายเซ็น</span></p>
               {% endif %}
               </td>
 
             <td>
                 {% if item.status == False %}
-                    <a href = "{% url 'confirmsend' item.id %}"button type="button" class="btn btn-primary">เซ็นต์ให้</abutton></a>
+                    <a href = "{% url 'confirmsend' item.id %}"button type="button" class="btn btn-primary">เซ็นให้</abutton></a>
                     {%endif %}
             </td>
 
@@ -51,7 +51,7 @@
         </table>
 
             {% else %}
-        <h2>กรุณา login ก่อนครับ </h2>
+        <h2>กรุณา เข้าสู่ระบบก่อน ก่อนครับ </h2>
 
         {% endif %}
 

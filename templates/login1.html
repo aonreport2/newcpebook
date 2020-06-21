@@ -1,13 +1,13 @@
 {% extends 'layout.html'%}
 {% block content %}
     <div class="container">
-    <h2>login ครั้งแรก</h2>
+    <h2 align="center">เข้าสู่ระบบครั้งแรก</h2>
     <form action="findstd" method="post">
         {% csrf_token %}
     <div class="form-group">
-   <label for ="" > กรอก รหัสนิสิต จ้า </label>
+   <label for ="" > กรุณากรอกรหัสนิสิต </label>
    <input type="text" class="form-control" name="std">
-    <input type="submit" value="ส่งเลย" class="btn btn-primary">
+    <input type="submit" value="ยืนยัน" class="btn btn-primary">
     </div>
     </form>
 
