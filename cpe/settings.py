@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '73*ls_+(ytrsd3!gpcwxn&%7235g)jh^f^7fzk!z&2mqze7v=m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['comengsrc.page', 'www.comengsrc.page']
+ALLOWED_HOSTS = ['comengsrc.page', 'www.comengsrc.page','127.0.0.1']
 
 
 # Application definition
@@ -78,17 +78,30 @@ WSGI_APPLICATION = 'cpe.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "cpe",
-        'USER':'aon132543',
-        'PASSWORD':'06543218',
-        'HOST':'localhost',
-        'PORT':''
+if DEBUG :
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': "cpe",
+            'USER':'root',
+            'PASSWORD':'',
+            'HOST':'localhost',
+            'PORT':''
+        }
     }
-}
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': "cpe",
+            'USER':'aon132543',
+            'PASSWORD':'06543218',
+            'HOST':'localhost',
+            'PORT':''
+        }
+    }
+
 
 
 
