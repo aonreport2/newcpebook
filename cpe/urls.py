@@ -20,7 +20,7 @@ from blogs import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.hello,name="index"),
-    path('page1',views.page1,name="page1"),
+    path('page1',views.page1),
     path('page2',views.page2),
     path('page3',views.page3),
     path('adduseradmin',views.adduser_admin),
