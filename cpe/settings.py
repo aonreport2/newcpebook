@@ -26,7 +26,7 @@ SECRET_KEY = '73*ls_+(ytrsd3!gpcwxn&%7235g)jh^f^7fzk!z&2mqze7v=m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['comengsrc.page', 'www.comengsrc.page','127.0.0.1']
+ALLOWED_HOSTS = ['comengsrc.page', 'www.comengsrc.page']
 
 
 # Application definition
