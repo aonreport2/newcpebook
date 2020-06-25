@@ -209,7 +209,7 @@ def setpassword (request):
     hashed_pass = make_password(password)
     oder = User.objects.filter(id = iduser)
     oder.update(password = hashed_pass)
-    return  redirect(request,page1)
+    return  redirect('page1')
 
 
 
