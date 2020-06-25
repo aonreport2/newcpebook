@@ -20,6 +20,7 @@ class OderCommand(models.Model):
     status = models.BooleanField(default=False)
     idcpeto = models.IntegerField(max_length=11)
     date = models.DateTimeField(auto_now_add=True)
+    userid = ('id',)
 
     class Meta :
         db_table = 'odercommand'
