@@ -47,38 +47,44 @@ def page3(request):
 def adduser(request):
     return render(request,'confirm1.html')
 
+@login_required (login_url='page1')
 def adduser_admin(request):
-
-    if request.method =='POST':
-        form = signUpForm(request.POST)
-        profile_form = UserProfileForm(request.POST)
-
-        if form.is_valid() and profile_form.is_valid():
-            # บันทึกข้อมูล
-            user = form.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
+    useradminor = request.user.is_superuser
+    if useradminor == 1:
 
 
+        if request.method =='POST':
+            form = signUpForm(request.POST)
+            profile_form = UserProfileForm(request.POST)
+
+            if form.is_valid() and profile_form.is_valid():
+                # บันทึกข้อมูล
+                user = form.save()
+                profile = profile_form.save(commit=False)
+                profile.user = user
+                profile.save()
 
 
-            # บันทึก GROUP
-            # ดึง username มาใช้
-            username = form.cleaned_data.get('username')
-            #คิวรี่
-            signUpUser =User.objects.get(username=username)
-            user_group = Group.objects.get(name = "user")
 
-            user_group.user_set.add(signUpUser)
 
-            #--------
+                # บันทึก GROUP
+                # ดึง username มาใช้
+                username = form.cleaned_data.get('username')
+                #คิวรี่
+                signUpUser =User.objects.get(username=username)
+                user_group = Group.objects.get(name = "user")
 
+                user_group.user_set.add(signUpUser)
+
+                #--------
+
+        else:
+            form = signUpForm()
+            profile_form = UserProfileForm()
+        context = {'form':form ,'profile_form':profile_form}
+        return render(request,'adduser.html',context)
     else:
-        form = signUpForm()
-        profile_form = UserProfileForm()
-    context = {'form':form ,'profile_form':profile_form}
-    return render(request,'adduser.html',context)
+        return  redirect(page1)
 
 def resualt (request):
     username = request.POST['user2']
@@ -138,7 +144,7 @@ def final (request):
         idsend = int(idsend)
         boolen = False
         # บันทึกข้อมูล
-        command = "แกเคยขอลายเซ็นต์คนนี้ไปแล้วอ่ะ T_T"
+        command = "น้องเคยขอลายเซ็นคนนี้ไปแล้วนะ"
         if idsend != request.user.id:
             if boolen == False:
                 for i in OderCommand.objects.filter(idcpesend = idmy):
@@ -159,7 +165,7 @@ def final (request):
 
 
         else:
-            error_x= "เราจะกรอก ID ตัวเองไม่ได้น้าเว้ย เราจะปั้มยอดลายเซ็นต์หรอ เสียใจนะ "
+            error_x= "เราจะกรอก ID ตัวเองไม่ได้น้าเว้ย เราจะปั้มยอดลายเซ็นหรอ  "
             return render(request,'error.html',{"error1":error_x})
 
 

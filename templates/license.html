@@ -2,7 +2,7 @@
 {% block content %}
 
     <h2>ส่งคำขอลายเซ็นต์</h2>
-    <h3>หนูคือ {{ user.userprofile.nickname }} ต้องการ ลายเซ็นของ</h3>
+    <h3> คุณคือ :  {{ user.userprofile.nickname }} ต้องการ ลายเซ็นของ</h3>
     <p>              <div class="alert alert-primary" role="alert">
                  ID ของคุณคือ  {{ request.user.id }} <a href="#" class="alert-link"></a>.
               </div>

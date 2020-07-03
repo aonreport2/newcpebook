@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +14,7 @@
 
 
     </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
     <meta charset="UTF-8">
     <title>CPE</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -21,8 +23,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="custom-style.css">
-
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -52,9 +52,18 @@
 </div>
 </body>
 
-    {% block  content %}
+<div class="container">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      {% block  content %}
 
-    {% endblock %}
+        {% endblock %}
+      <div style="height: 700px"></div>
+      <p align="CENTER" class="lead mb-0">Computer Engineering Sriracha!</p>
+    </div>
+  </div>
+</div>
+
 
 </div>
 
