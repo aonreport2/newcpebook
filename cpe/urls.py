@@ -33,7 +33,9 @@ urlpatterns = [
     path('confirmsend/<int:oder_id>',views.confirmsend,name="confirmsend"),
     path('error',views.error,name="error"),
     path('findstd',views.findstd,name="findstd"),
-    path('setpassword',views.setpassword)
+    path('setpassword',views.setpassword),
+    path('admincheckinput',views.admincheckinput),
+    path('admincheck',views.admincheck)
     #path('order/<int:oder_id',views.viewOrder,name="oder")
 
 ]

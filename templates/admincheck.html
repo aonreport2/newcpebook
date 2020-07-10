@@ -1,19 +1,22 @@
-{% extends 'layout2.html'   %}
+{% extends 'layout3.html'   %}
 {% block content %}
         <div class="container">
-          {% if user.is_authenticated %}
               <p><div class="alert alert-primary" role="alert">
-                 สวัสดีจ้า {{ user.userprofile.nickname }} ยินดีต้อนรับนะ  <a href="#" class="alert-link"></a>.
+                 คุณกำลังดูของ {{ nickname }}  <a href="#" class="alert-link"></a>.
               </div>
               </p>
               <p>              <div class="alert alert-primary" role="alert">
-                 ID ของคุณคือ  {{ request.user.id }}
+                 ID ของคนที่กำลังดูคือ  {{ userid }}
                 <a href="#" class="alert-link"></a>.
               </div></p>
               <p>              <div class="alert alert-primary" role="alert">
-                 CPE ของคุณคือ CPE {{ user.userprofile.cpenumber }}
+                 CPE ของคนที่คุณคือ CPE {{ cpenumber }}
                 <a href="#" class="alert-link"></a>.
               </div></p>
+        <p><div class="alert alert-primary" role="alert">
+                น้องหาลายเซ็นต์ได้ทั้งหมด  {{ odercout }}  <a href="#" class="alert-link"></a>.
+              </div>
+              </p>
                 <table class="table">
           <thead class="thead-dark">
             <tr>
@@ -49,33 +52,8 @@
                           </td>
                         </tr>
                     {% endfor %}
-
           </tbody>
         </table>
-     <nav aria-label="Page navigation example">
-      {% if oders.paginator.num_pages > 1 %}
-      <ul class="pagination">
-      {% for pagenumber in oders.paginator.page_range %}
-
-          <li class="page-item
-          {% if oders.number == pagenumber %}
-                active
-
-          {% endif %}
-
-            "><a class="page-link" href="?page={{ pagenumber }}">{{ pagenumber }}</a></li>
-            {% endfor %}
-      </ul>
-
-
-          {% endif %}
-    </nav>
-
-            {% else %}
-        <h2>กรุณา login ก่อนครับ </h2>
-
-        {% endif %}
-
     </div>
 
 

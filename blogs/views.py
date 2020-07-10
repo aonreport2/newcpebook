@@ -8,6 +8,8 @@ from  django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.decorators import login_required
 from .form import UserProfileForm
 from django.contrib.auth.hashers import make_password
+from django.core.paginator import Paginator,EmptyPage,InvalidPage
+
 
 # Create your views here.
 def hello (request):
@@ -112,7 +114,23 @@ def appsend(request):
         idcpe = str(request.user.id)
         test = UserProfile.objects.all()
         oders = OderCommand.objects.filter(idcpesend=idcpe)
-        contxt = {"oders":oders,"test":test}
+
+        paginator = Paginator(oders, 50)
+
+        try:
+           page = int (request.GET.get('page','1'))
+        except:
+            page = 1
+        try :
+            productperPage = paginator.page(page)
+        except(EmptyPage,InvalidPage) :
+            productperPage = paginator.page(paginator.num_pages)
+
+
+
+        contxt = {"oders":productperPage,"test":test}
+
+
 
     return render(request,'appsend.html',contxt)
 
@@ -177,7 +195,18 @@ def confirmlicn(request):
         oders = OderCommand.objects.filter(idcpeto=idcpe)
         test = UserProfile.objects.all()
 
-    return render(request,'confirmlic.html',{"oders":oders,"test":test})
+        paginator = Paginator(oders, 50)
+
+        try:
+            page = int(request.GET.get('page', '1'))
+        except:
+            page = 1
+        try:
+            productperPage = paginator.page(page)
+        except(EmptyPage, InvalidPage):
+            productperPage = paginator.page(paginator.num_pages)
+
+    return render(request,'confirmlic.html',{"oders":productperPage,"test":test})
 
 def confirmsend(request,oder_id):
     if request.user.is_authenticated:
@@ -216,6 +245,42 @@ def setpassword (request):
     oder = User.objects.filter(id = iduser)
     oder.update(password = hashed_pass)
     return  redirect(page1)
+
+@login_required (login_url='page1')
+def admincheckinput (request):
+    useradminor = request.user.is_superuser
+    if useradminor == 1:
+        return render(request,'admincheckinput.html')
+    else:
+        return redirect(page1)
+
+
+@login_required (login_url='page1')
+def admincheck (request):
+    useradminor = request.user.is_superuser
+    if useradminor == 1:
+        stdsend = request.POST['std']
+        userprofilestd = UserProfile.objects.filter(std=stdsend)
+        for i in userprofilestd:
+            userid = i.user_id
+            edu = i.edu
+            nickname = i.nickname
+            cpenumber = i.cpenumber
+            count = i.count
+        test = UserProfile.objects.all()
+        oders = OderCommand.objects.filter(idcpesend=userid)
+
+        odercout = 0
+        for k in oders :
+            if k.idcpesend == userid:
+                odercout += 1
+
+        contxt = {"oders": oders, "test": test,"nickname":nickname,"cpenumber":cpenumber,"userid":userid,"odercout":odercout}
+        return render(request,'admincheck.html',contxt)
+    else:
+        return redirect(page1)
+
+
 
 
 

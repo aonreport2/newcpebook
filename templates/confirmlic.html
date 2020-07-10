@@ -49,7 +49,23 @@
         {% endfor %}
           </tbody>
         </table>
+                   <nav aria-label="Page navigation example">
+      {% if oders.paginator.num_pages > 1 %}
+      <ul class="pagination">
+      {% for pagenumber in oders.paginator.page_range %}
 
+          <li class="page-item
+          {% if oders.number == pagenumber %}
+                active
+
+          {% endif %}
+          "><a class="page-link" href="?page={{ pagenumber }}">{{ pagenumber }}</a></li>
+            {% endfor %}
+      </ul>
+
+
+          {% endif %}
+    </nav>
             {% else %}
         <h2>กรุณา เข้าสู่ระบบก่อน ก่อนครับ </h2>
 
