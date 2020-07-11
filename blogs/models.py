@@ -24,7 +24,7 @@ class OderCommand(models.Model):
 
     class Meta :
         db_table = 'odercommand'
-        ordering =('date',)
+        ordering =('-date',)
         verbose_name = 'รายการที่'
         verbose_name_plural = 'รายการ'
 
