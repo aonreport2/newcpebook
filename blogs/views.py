@@ -22,29 +22,37 @@ def hello (request):
                 )
 
 def page1(request):
+    openserver = 1
+    if openserver == 1:
 
-    if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            username = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(username = username, password = password)
-            if user is not None:
-                login(request,user)
-                return redirect('appsend')
-            else:
-                return redirect('index')
+        if request.method == 'POST':
+            form = AuthenticationForm(data=request.POST)
+            if form.is_valid():
+                username = request.POST['username']
+                password = request.POST['password']
+                user = authenticate(username = username, password = password)
+                if user is not None:
+                    login(request,user)
+                    return redirect('appsend')
+                else:
+                    return redirect('index')
 
 
+        else:
+            form =AuthenticationForm()
+
+        return render(request,'page1.html',{'form':form})
     else:
-        form =AuthenticationForm()
-
-    return render(request,'page1.html',{'form':form})
+        return render(request,'errorlayout1.html')
 
 def page2(request):
     return render(request,'contract.html')
 def page3(request):
-    return render(request,'login1.html')
+    openserver = 1
+    if openserver == 1:
+        return render(request,'login1.html')
+    else:
+        return  render(request,'errorlayout1.html')
 
 def adduser(request):
     return render(request,'confirm1.html')
@@ -229,7 +237,6 @@ def findstd(request):
     object_user = User.objects.filter(id = userid)
     for k in object_user:
         username = k.username
-
     if count == "0":
         userprofilestd.update(count=1)
         requestsend = {"userid":userid,"edu":edu,"nickname":nickname,"username":username,"cpenumber":cpenumber}
