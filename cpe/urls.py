@@ -37,6 +37,7 @@ urlpatterns = [
     path('admincheckinput',views.admincheckinput),
     path('admincheck',views.admincheck),
     path('checklicense',views.checklicense),
+    path('adminchecklicense/<int:userid>',views.adminchecklicense,name="adminchecklicense")
     #path('order/<int:oder_id',views.viewOrder,name="oder")
 
 ]

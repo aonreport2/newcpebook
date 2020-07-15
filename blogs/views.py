@@ -296,10 +296,19 @@ def checklicense (request):
             idcpe = int(request.user.id)
             oders = OderCommand.objects.filter(idcpesend=idcpe)
             countall = 0
-            edu1 = 0
-            edu2 = 0
-            edu3 = 0
-            edu4 = 0
+            #เซ็นให้แล้ว
+            edu1a =0
+            edu2a =0
+            edu3a =0
+            edu4a =0
+            #ยังไม่เซ็น
+            edu1s =0
+            edu2s =0
+            edu3s =0
+            edu4s =0
+
+
+
 
 
 
@@ -309,18 +318,39 @@ def checklicense (request):
                     countall += 1
                 for k in test :
                     if k.edu == "1":
-                        edu1 += 1
+                        if i.status == True:
+                            edu1a += 1
+                        else:
+                            edu1s += 1
                     elif k.edu == "2":
-                        edu2 += 1
+                        if i.status == True:
+                            edu2a += 1
+                        else:
+                            edu2s += 1
                     elif k.edu == "3":
-                        edu3 += 1
+                        if i.status == True:
+                            edu3a += 1
+                        else:
+                            edu3s += 1
                     else :
-                        edu4 += 1
+                        if i.status == True:
+                            edu4a += 1
+                        else:
+                            edu4s += 1
 
-            sumedu1 = 106-edu1
-            sumedu2 = 50 -edu2
-            sumedu3 = 30 -edu3
+
+            #จำนวนลายเซ็นต์ทั้งหมด
+            edu1 = edu1s+edu1a
+            edu2 = edu2s+edu2a
+            edu3 = edu3s+edu3a
+            edu4 = edu4s+edu4a
+
+            #จำนวนลายเซ็นต์ที่ยังขาด
+            sumedu1 = 106-edu1a
+            sumedu2 = 50 -edu2a
+            sumedu3 = 30 -edu3a
             sumedu4 =  20- edu4
+
             if sumedu1 < 0:
                 sumedu1 = 0
             if sumedu2 < 0 :
@@ -332,10 +362,99 @@ def checklicense (request):
 
 
             contxt = {"countall":countall,"edu1":edu1,"edu2":edu2,"edu3":edu3,"edu4":edu4,"sumedu1":sumedu1,
-                      "sumedu2":sumedu2,"sumedu3":sumedu3,"sumedu4":sumedu4}
+                      "sumedu2":sumedu2,"sumedu3":sumedu3,"sumedu4":sumedu4,
+                      "edu1a":edu1a,"edu2a":edu2a,"edu3a":edu3a,"edu4a":edu4a,
+                      "edu1s":edu1s,"edu2s":edu2s,"edu3s":edu3s,"edu4s":edu4s}
             return render(request,'checklicense.html',contxt)
         else:
             return render(request,'errorlayout2.html')
+
+@login_required(login_url='page1')
+def adminchecklicense(request,userid):
+    useradminor = request.user.is_superuser
+    if useradminor == 1:
+        idcpe = userid
+        oders = OderCommand.objects.filter(idcpesend=idcpe)
+        countall = 0
+        #เซ็นให้แล้ว
+        edu1a =0
+        edu2a =0
+        edu3a =0
+        edu4a =0
+        #ยังไม่เซ็น
+        edu1s =0
+        edu2s =0
+        edu3s =0
+        edu4s =0
+
+
+
+
+
+
+        for i in oders:
+            test = UserProfile.objects.filter(user_id = i.idcpeto)
+            if i.idcpesend == idcpe:
+                countall += 1
+            for k in test :
+                if k.edu == "1":
+                    if i.status == True:
+                        edu1a += 1
+                    else:
+                        edu1s += 1
+                elif k.edu == "2":
+                    if i.status == True:
+                        edu2a += 1
+                    else:
+                        edu2s += 1
+                elif k.edu == "3":
+                    if i.status == True:
+                        edu3a += 1
+                    else:
+                        edu3s += 1
+                else :
+                    if i.status == True:
+                        edu4a += 1
+                    else:
+                        edu4s += 1
+
+
+            #จำนวนลายเซ็นต์ทั้งหมด
+        edu1 = edu1s+edu1a
+        edu2 = edu2s+edu2a
+        edu3 = edu3s+edu3a
+        edu4 = edu4s+edu4a
+
+            #จำนวนลายเซ็นต์ที่ยังขาด
+        sumedu1 = 106-edu1a
+        sumedu2 = 50 -edu2a
+        sumedu3 = 30 -edu3a
+        sumedu4 =  20- edu4
+
+        if sumedu1 < 0:
+            sumedu1 = 0
+        if sumedu2 < 0 :
+            sumedu2 = 0
+        if sumedu3 < 0 :
+            sumedu3 = 0
+        if sumedu4 <= 0 :
+            sumedu4 = 0
+
+
+        contxt = {"countall":countall,"edu1":edu1,"edu2":edu2,"edu3":edu3,"edu4":edu4,"sumedu1":sumedu1,
+                      "sumedu2":sumedu2,"sumedu3":sumedu3,"sumedu4":sumedu4,
+                      "edu1a":edu1a,"edu2a":edu2a,"edu3a":edu3a,"edu4a":edu4a,
+                      "edu1s":edu1s,"edu2s":edu2s,"edu3s":edu3s,"edu4s":edu4s}
+        return render(request,'adminchecklicense.html',contxt)
+
+
+        return render(request,adminchecklicense)
+
+    else:
+        return redirect(page1)
+
+
+
 
 
 
