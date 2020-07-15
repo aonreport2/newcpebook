@@ -16,6 +16,7 @@
               <th scope="col"align="center">คำสั่งที่</th>
               <th scope="col"align="center">คำขอลายเซ็นต์จากID</th>
                  <th scope="col"align="center">ชื่อ</th>
+                <th scope="col"align="center">เลขCPE</th>
               <th scope="col"align="center">สถานะ</th>
                 <th scope="col"align="center">ให้/ไม่ให้</th>
             </tr>
@@ -25,12 +26,23 @@
             <tr>
               <th scope="row">{{ item.id }}</th>
               <td><p>{{ item.idcpesend }}</p></td>
-                <td>{% for tests in test %}
+                <td>
+                    {% for tests in test %}
                               {% if tests.user_id == item.idcpesend %}
                                  <p> {{ tests.nickname }} </p>
                                  {% endif %}
                              {% endfor %}
                     </td>
+
+            <td>
+                    {% for tests in test %}
+                              {% if tests.user_id == item.idcpesend %}
+                                 <p> CPE {{ tests.cpenumber }} </p>
+                                 {% endif %}
+                             {% endfor %}
+                    </td>
+
+
               <td>{% if item.status == True %}
                   <p align="center" ><span class="badge badge-pill badge-success">ได้ลายเซ็นแล้ว</span></p>
                   {% else %}
