@@ -320,7 +320,7 @@ def checklicense (request):
             sumedu1 = 106-edu1
             sumedu2 = 50 -edu2
             sumedu3 = 30 -edu3
-            sumedu4 =  40- edu4
+            sumedu4 =  20- edu4
             if sumedu1 < 0:
                 sumedu1 = 0
             if sumedu2 < 0 :
