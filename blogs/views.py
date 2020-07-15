@@ -287,6 +287,61 @@ def admincheck (request):
     else:
         return redirect(page1)
 
+@login_required(login_url='page1')
+def checklicense (request):
+    if request.user.is_authenticated:
+        edumy = request.user.userprofile.edu
+        if edumy == "1":
+
+            idcpe = int(request.user.id)
+            oders = OderCommand.objects.filter(idcpesend=idcpe)
+            countall = 0
+            edu1 = 0
+            edu2 = 0
+            edu3 = 0
+            edu4 = 0
+
+
+
+            for i in oders:
+                test = UserProfile.objects.filter(user_id = i.idcpeto)
+                if i.idcpesend == idcpe:
+                    countall += 1
+                for k in test :
+                    if k.edu == "1":
+                        edu1 += 1
+                    elif k.edu == "2":
+                        edu2 += 1
+                    elif k.edu == "3":
+                        edu3 += 1
+                    else :
+                        edu4 += 1
+
+            sumedu1 = 106-edu1
+            sumedu2 = 50 -edu2
+            sumedu3 = 30 -edu3
+            sumedu4 =  40- edu4
+            if sumedu1 < 0:
+                sumedu1 = 0
+            if sumedu2 < 0 :
+                sumedu2 = 0
+            if sumedu3 < 0 :
+                sumedu3 = 0
+            if sumedu4 <= 0 :
+                sumedu4 = 0
+
+
+            contxt = {"countall":countall,"edu1":edu1,"edu2":edu2,"edu3":edu3,"edu4":edu4,"sumedu1":sumedu1,
+                      "sumedu2":sumedu2,"sumedu3":sumedu3,"sumedu4":sumedu4}
+            return render(request,'checklicense.html',contxt)
+        else:
+            return render(request,'errorlayout2.html')
+
+
+
+
+
+
 
 
 

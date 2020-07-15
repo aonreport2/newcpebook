@@ -35,7 +35,8 @@ urlpatterns = [
     path('findstd',views.findstd,name="findstd"),
     path('setpassword',views.setpassword),
     path('admincheckinput',views.admincheckinput),
-    path('admincheck',views.admincheck)
+    path('admincheck',views.admincheck),
+    path('checklicense',views.checklicense),
     #path('order/<int:oder_id',views.viewOrder,name="oder")
 
 ]
