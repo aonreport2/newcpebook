@@ -2,6 +2,15 @@
 {% block content %}
     <div class="container">
     <h2 align="center">เข้าสู่ระบบครั้งแรก</h2>
+        <div class="alert alert-danger" role="alert">
+  ***หมายเหตุ*** พี่ปี3 ขึ้นไป  กรอกตามที่แจ้งไว้ใน กลุ่มสายรหัส62/ไลน์กลุ่ม
+</div>
+        <div class="alert alert-danger" role="alert">
+            พี่ปี3 ขึ้นไป  ห้ามกรอกรหัสนิสิต ให้กรอกตามที่แจ้งไว้ใน กลุ่มสายรหัส 62 / ไลน์กลุ่มปีพี่
+</div>
+        <div class="alert alert-danger" role="alert">
+           หากกรอกแล้ว ขึ้น  Server Error 500 อาจกรอก รหัสนิสิตผิด หรือ ไม่ได้กรอกตามที่แจ้งไว้
+</div>
     <form action="findstd" method="post">
         {% csrf_token %}
     <div class="form-group">
@@ -10,7 +19,6 @@
     <input type="submit" value="ยืนยัน" class="btn btn-primary">
     </div>
     </form>
-        <p>***หมายเหตุ***พี่ปีสูง กรอกตามที่แจ้งไว้ใน กลุ่มสายรหัส62/ไลน์กลุ่ม</p>
 
 
 
