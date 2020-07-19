@@ -222,6 +222,18 @@ def confirmsend(request,oder_id):
         oder.update(status=True)
     return redirect(confirmlicn)
 
+def removeodercheck(request,oder_id):
+    if request.user.is_authenticated:
+        oder = oder_id
+        requestsend = {'id':oder}
+    return render(request,'removeoder.html',requestsend)
+
+def removeoder(request,oder_id):
+    if request.user.is_authenticated:
+        oder = OderCommand.objects.filter(id=oder_id)
+        oder.delete()
+    return redirect('appsend')
+
 def error(request):
     return render(request,'error.html')
 

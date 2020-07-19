@@ -22,7 +22,10 @@
             </tr>
           </thead>
           <tbody>
+
+
               {% for item in oders %}
+
             <tr>
               <th scope="row">{{ item.id }}</th>
               <td><p>{{ item.idcpesend }}</p></td>
@@ -53,7 +56,7 @@
 
             <td>
                 {% if item.status == False %}
-                    <a href = "{% url 'confirmsend' item.id %}"button type="button" class="btn btn-primary">เซ็นให้</abutton></a>
+                    <a href = "{% url 'confirmsend' item.id %}"button type="button" class="btn btn-primary">เซ็นให้ </abutton></a>
                     {%endif %}
             </td>
 

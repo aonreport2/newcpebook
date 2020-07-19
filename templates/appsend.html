@@ -14,6 +14,9 @@
                  CPE ของคุณคือ CPE {{ user.userprofile.cpenumber }}
                 <a href="#" class="alert-link"></a>.
               </div></p>
+              <div class="alert alert-warning" role="alert">
+              ดู คำสั่งที่ / ชื่อเล่น  ดีๆก่อนลบนะ ไม่มียืนยันรอบ 2 นะ ฮาๆ
+            </div>
                 <table class="table">
           <thead class="thead-dark">
             <tr>
@@ -21,6 +24,8 @@
               <th scope="col" align="center">ส่งคำขอให้ ID </th>
                 <th scope="col" align="center">ชื่อ</th>
               <th scope="col" align="center">สถานะ</th>
+                <th scope="col" align="center">อื่นๆ</th>
+
             </tr>
           </thead>
           <tbody>
@@ -47,9 +52,20 @@
                               <p align="center"><span class="badge badge-pill badge-danger">ยังไม่ได้ลายเซ็น</span></p>
                           {% endif %}
                           </td>
+
+
+            <td>
+                {% if item.status == False %}
+                    <a href = "{% url 'removeoder' item.id %}"button type="button" class="btn btn-primary">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        ลบ
+                        </abutton>
+                    </a>
+                    {%endif %}
+            </td>
+
                         </tr>
                     {% endfor %}
-
           </tbody>
         </table>
      <nav aria-label="Page navigation example">
