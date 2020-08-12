@@ -25,12 +25,18 @@ urlpatterns = [
     path('page3',views.page3),
     path('adduseradmin',views.adduser_admin),
     path('resualt',views.resualt),
-    path('appsend',views.appsend,name="appsend"),
+    # path('appsend',views.appsend,name="appsend"),
+    path('appsend',views.checklicense,name="appsend"),
     path('account/logout',views.signOutView,name="signout"),
-    path('license',views.license,name="license"),
+    path('license',views.checklicense,name="license"),
+    # path('license',views.license,name="license"),
     path('final',views.final,name="final"),
-    path('confirmlic',views.confirmlicn,name = "confirmlic"),
+
+    path('confirmlic',views.checklicense,name = "confirmlic"),
+    # path('confirmlic',views.confirmlicn,name = "confirmlic"),
+
     path('confirmsend/<int:oder_id>',views.confirmsend,name="confirmsend"),
+
     path('error',views.error,name="error"),
     path('findstd',views.findstd,name="findstd"),
     path('setpassword',views.setpassword),
